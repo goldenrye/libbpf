@@ -58,6 +58,7 @@
 # endif
 #endif
 
+extern char *g_cube_inst_node_name;
 static inline __u64 ptr_to_u64(const void *ptr)
 {
 	return (__u64) (unsigned long) ptr;
@@ -399,7 +400,7 @@ int bpf_map_update_elem(int fd, const void *key, const void *value,
     union bpf_attr attr;
 
     map_req_para_t para = {
-        .server = "192.168.122.122",
+        .server = g_cube_inst_node_name,
     };
 
     printf("map_update_elem: fd %d, key %d, value %d, flags %lld\n", fd, *(uint32_t *)key, *(int32_t *)value, flags);
@@ -427,7 +428,7 @@ int bpf_map_lookup_elem(int fd, const void *key, void *value)
  	union bpf_attr attr;
 
     map_req_para_t para = {
-        .server = "192.168.122.122",
+        .server = g_cube_inst_node_name,
     };
 
     printf("map_lookup_elem: fd %d, key %d\n", fd, *(uint32_t *)key);
@@ -481,7 +482,7 @@ int bpf_map_delete_elem(int fd, const void *key)
  	union bpf_attr attr;
 
     map_req_para_t para = {
-        .server = "192.168.122.122",
+        .server = g_cube_inst_node_name,
     };
 
     printf("map_delete_elem: fd %d, key %d\n", fd, *(uint32_t *)key);
